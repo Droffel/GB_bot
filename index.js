@@ -6,10 +6,23 @@ const Prefix = "T"
 
 var bot = new Discord.Client();
 
+var fortunes = [
+  "Yes",
+  "No",
+  "Maybe",
+  "Only time will tell",
+  "I Dunno, do you?"
+];
+
 bot.on("ready", function() {
   console.log("ready");
 });
 
+bot.on("guildMemberAdd", function(member) {
+  member.guild.channels.find("name", "general").sendMessage(member.toString() + "Hi and welcome to the Rezzzz Discord server!");
+
+  member.addRole(member.guild.roles.find("name", "Member"))
+});
 
 bot.on("message", function(message) {
   console.log(message.content);
@@ -29,6 +42,11 @@ bot.on("message", function(message) {
     case "mycreator":
     message.channel.sendMessage("i was created by the one and only Droffel!");
     break;
+    case "FortuneTeller":
+    if (args[1]) message.channel.sendmessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
+    else message.channel.sendmessage("Can't read that")
+    break;
+
     default:
     message.channel.sendMessage("Sorry pal, that ain't a command!")
   }
