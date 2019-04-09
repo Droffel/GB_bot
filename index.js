@@ -27,7 +27,7 @@ bot.on("message", function(message) {
     message.channel.sendMessage("I can use the commands: Tping, Tplay, TMyCreator");
     break;
     case "MyCreator":
-    message.channel.sendMessage("I was created by the owner of Rezzzz Discord channel "droffel");
+    message.channel.sendMessage("I was created by the owner of Rezzzz Discord channel \"droffel");
     break;
     default:
     message.channel.sendMessage("Sorry pal, that ain't a command!")
