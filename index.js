@@ -44,11 +44,11 @@ bot.on("message", function(message) {
     break;
     case "FortuneTeller":
     if (args[1]) message.channel.sendmessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
-    else message.channel.sendmessage("Can't read that")
+    else message.channel.sendmessage("Can't read that");
     break;
 
     default:
-    message.channel.sendMessage("Sorry pal, that ain't a command!")
+    message.channel.sendMessage("Sorry pal, that ain't a command!");
   }
 });
 
