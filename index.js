@@ -24,10 +24,10 @@ bot.on("message", function(message) {
     message.channel.sendMessage("Pong!");
     break;
     case "commands":
-    message.channel.sendMessage("I can use the commands: Tping, Tplay, TMyCreator");
+    message.channel.sendMessage("i can use the commands: Tping, Tplay, TMyCreator");
     break;
-    case "MyCreator":
-    message.channel.sendMessage("I was created by Droffel");
+    case "mycreator":
+    message.channel.sendMessage("i was created by the one and only Droffel!");
     break;
     default:
     message.channel.sendMessage("Sorry pal, that ain't a command!")
