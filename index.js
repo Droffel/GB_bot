@@ -23,6 +23,8 @@ bot.on("message", function(message) {
     case "ping":
     message.channel.sendMessage("Pong!");
     break;
+    default:
+    message.channel.sendMessage("Sorry pal, dat ain't a command")
   }
 });
 
