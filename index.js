@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
-const ffmpegPath = require("ffmpeg");
 
 const Token = "NTY0NTA3MjQyMTMzNzE3MDAy.XKujTg.4aNQD2hNa9E9vvC3606nlN3NIjo";
 const Prefix = "_"
@@ -23,22 +22,6 @@ var fortunes = [
   "Only Spence knows...",
   "I won't answer dat :angry: !"
 ];
-
-function play(connection, message) {
-  var server = servers[message.guild.id];
-
-  server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
-
-  server.queue.shift();
-
-  server.dispatcher.on("end", function() {
-    if (server.queue[0]) play(connection, message);
-    else connection.disconnect();
-  });
-
-}
-
-var servers = {};
 
 bot.on("ready", function() {
   console.log("ready");
@@ -70,24 +53,14 @@ bot.on("message", function(message) {
       message.channel.sendMessage("Can't read that!");
     }
     break;
-    case "play":
-    if (!args[1]) {
-      message.channel.sendMessage("please provide a link!");
-      return;
-    }
-
-    if (!message.member.voiceChannel) {
-      message.channel.sendMessage("you must be in a voicechannel!");
-      return;
-    }
-
-    if(!servers[message.guild.id]) servers[message.guild.id] = {
-      queue: [0]
-    };
-
-    var server = servers[message.guild.id];
 
 
+    default:
+    message.channel.sendMessage("Sorry pal, that ain't a command!");
+  }
+});
+
+bot.login(process.env.Token);
     if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
       play(connection, message);
     });
