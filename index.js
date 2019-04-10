@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 const Token = "NTY0NTA3MjQyMTMzNzE3MDAy.XKujTg.4aNQD2hNa9E9vvC3606nlN3NIjo";
 
-const Prefix = "T"
+const Prefix = "_"
 
 var bot = new Discord.Client();
 
@@ -10,8 +10,15 @@ var fortunes = [
   "Yes",
   "No",
   "Maybe",
-  "Only time will tell",
-  "I Dunno, do you?"
+  "Only time will tell!",
+  "I Dunno, do you?",
+  "Eat a Swedish Köttbulle and all answers will be clear :)",
+  "Nah I don't think so you bitch, BTW Noel is a fliping beast!",
+  "Only Noel knows...",
+  "Only Droffel knows...",
+  "Only Emil knows...",
+  "Only Spence knows...",
+  "I won't answer dat >:("
 ];
 
 bot.on("ready", function() {
@@ -32,7 +39,7 @@ bot.on("message", function(message) {
     message.channel.sendMessage("Pong!");
     break;
     case "commands":
-    message.channel.sendMessage("i can use the commands: Tping, Tplay, TMyCreator");
+    message.channel.sendMessage("i can use the commands: _ping, _play, _MyCreator, _8ball");
     break;
     case "mycreator":
     message.channel.sendMessage("i was created by the one and only Droffel!");
