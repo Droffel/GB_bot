@@ -42,9 +42,12 @@ bot.on("message", function(message) {
     case "mycreator":
     message.channel.sendMessage("i was created by the one and only Droffel!");
     break;
-    case "FortuneTeller":
-    if (args[1]) message.channel.sendmessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
-    else message.channel.sendmessage("Can't read that");
+    case "8ball":
+    if (args[1]) {
+      message.channel.sendMessage(fortunes[math.floor(math.random() * fortunes.length)];
+    } else {
+      message.channel.sendMessage("Can't read that!");
+    }
     break;
 
     default:
