@@ -71,12 +71,12 @@ bot.on("message", function(message) {
     break;
     case "play":
     if (!args[1]) {
-      message.textChannel.send("please provide a link!");
+      message.channel.sendMessage("please provide a link!");
       return;
     }
 
-    if (!message.member.voicechannel) {
-      message.textChannel.send("you must be in a voicechannel!");
+    if (!message.member.voiceChannel) {
+      message.channel.sendMessage("you must be in a voicechannel!");
       return;
     }
 
