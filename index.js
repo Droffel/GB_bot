@@ -35,7 +35,7 @@ bot.on("message", function(message) {
   if (!message.content.startsWith(Prefix)) return;
 
   var args = message.content.substring(Prefix.length).split(" ");
-}
+
   switch (args[0].toLowerCase()) {
     case "ping":
     message.channel.sendMessage("Pong!");
