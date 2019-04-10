@@ -81,7 +81,7 @@ bot.on("message", function(message) {
     }
 
     if(!servers[message.guild.id]) servers[message.guild.id] = {
-      queue: [0];
+      queue: [0]
     };
 
     var server = servers[message.guild.id];
