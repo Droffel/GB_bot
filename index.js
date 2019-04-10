@@ -70,23 +70,23 @@ bot.on("message", function(message) {
     break;
     case "play":
     if (!args[1]) {
-      message.channel.send("please provide a link!");
+      message.channel.sendMessage("please provide a link!");
       return;
     }
 
     if (!message.member.voicechannel) {
-      message.channel.send("you must be in a voicechannel!");
+      message.channel.sendMessage("you must be in a voicechannel!");
       return;
     }
 
     if(!servers[message.guild.id]) servers[message.guild.id] = {
-      queue: [0]
+      queue: [0];
     };
 
     var server = servers[message.guild.id];
 
 
-    if (!message.guild.voiceConnection) message.member.voiceChannel.join(). then(function(connection) {
+    if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
       play(connection, message);
     });
 
