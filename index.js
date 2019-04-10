@@ -70,12 +70,12 @@ bot.on("message", function(message) {
     break;
     case "play":
     if (!args[1]) {
-      message.channel.send("please provide a link!")
+      message.channel.send("please provide a link!");
       return;
     }
 
     if (!message.member.voicechannel) {
-      message.channel.send("you must be in a voicechannel!")
+      message.channel.send("you must be in a voicechannel!");
       return;
     }
 
@@ -108,4 +108,3 @@ bot.on("message", function(message) {
 });
 
 bot.login(process.env.Token);
-
