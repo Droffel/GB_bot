@@ -79,7 +79,7 @@ bot.on("message", function(message) {
       return;
     }
 
-    if (!servers[message.guild.id]) servers[message.guild.id] = {
+    if(!servers[message.guild.id]) servers[message.guild.id] = {
       queue: []
     };
 
