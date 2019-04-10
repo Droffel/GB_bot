@@ -25,7 +25,8 @@ var fortunes = [
 
 function play(connection, message) {
   var server = servers[message.guild.id];
-  server.dispatcher = connection.playstream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+  server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
 
   server.queue.shift();
 
