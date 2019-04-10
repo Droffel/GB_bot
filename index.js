@@ -39,7 +39,7 @@ bot.on("message", function(message) {
     break;
     case "8ball":
     if (args[1]) {
-      message.channel.sendMessage(fortunes[math.floor(math.random() * fortunes.length)]);
+      message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
     } else {
       message.channel.sendMessage("Can't read that!");
     }
