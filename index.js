@@ -35,7 +35,7 @@ bot.on("message", function(message) {
   if (!message.content.startsWith(Prefix)) return;
 
   var args = message.content.substring(Prefix.length).split(" ");
-
+}
   switch (args[0].toLowerCase()) {
     case "ping":
     message.channel.sendMessage("Pong!");
@@ -61,25 +61,4 @@ bot.on("message", function(message) {
 });
 
 bot.login(process.env.Token);
-    if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
-      play(connection, message);
-    });
 
-    break;
-
-    case "skip":
-    var server = servers(message.guild.id);
-    if (server.dispatcher) server.dispatcher.end();
-    break;
-
-    case "stop":
-    var server = servers(message.guild.id);
-    if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-    break;
-
-    default:
-    message.channel.sendMessage("Sorry pal, that ain't a command!");
-  }
-});
-
-bot.login(process.env.Token);
