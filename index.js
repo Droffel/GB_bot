@@ -91,7 +91,7 @@ bot.on("message", function(message) {
     var server = servers[message.guild.id];
 
     if (!message.guild.voiceConnection) message.member.voiceChannel.join(). then(function(connection) {
-      playconnection, message);
+      play(connection, message);
     });
 
     break;
