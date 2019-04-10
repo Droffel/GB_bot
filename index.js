@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
 
 const Token = "NTY0NTA3MjQyMTMzNzE3MDAy.XKujTg.4aNQD2hNa9E9vvC3606nlN3NIjo";
-
 const Prefix = "_"
 
-const YTDL = require("ytdl-core");
+
 
 var bot = new Discord.Client();
 
