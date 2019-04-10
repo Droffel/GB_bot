@@ -70,12 +70,12 @@ bot.on("message", function(message) {
     break;
     case "play":
     if (!args[1]) {
-      message.channel.sendMessage("please provide a link!")
+      message.channel.Messagesend("please provide a link!")
       return;
     }
 
     if (!message.member.voicechannel) {
-      message.channel.sendMessage("you must be in a voicechannel!")
+      message.channel.Messagesend("you must be in a voicechannel!")
       return;
     }
 
@@ -85,12 +85,6 @@ bot.on("message", function(message) {
 
     var server = servers[message.guild.id];
 
-    server.queue.push(args[1]);
-    break;
-
-
-
-    var server = servers[message.guild.id];
 
     if (!message.guild.voiceConnection) message.member.voiceChannel.join(). then(function(connection) {
       play(connection, message);
@@ -114,3 +108,4 @@ bot.on("message", function(message) {
 });
 
 bot.login(process.env.Token);
+
