@@ -36,7 +36,7 @@ function play(connection, message) {
 
 }
 
-var servers = ();
+var servers = {};
 
 bot.on("ready", function() {
   console.log("ready");
