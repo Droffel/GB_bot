@@ -18,11 +18,6 @@ bot.on("ready", function() {
   console.log("ready");
 });
 
-bot.on("guildMemberAdd", function(member) {
-  member.guild.channels.find("name", "general").sendMessage(member.toString() + "Hi and welcome to the Rezzzz Discord server!");
-
-  member.addRole(member.guild.roles.find("name", "Member"))
-});
 
 bot.on("message", function(message) {
   console.log(message.content);
@@ -44,7 +39,7 @@ bot.on("message", function(message) {
     break;
     case "8ball":
     if (args[1]) {
-      message.channel.sendMessage(fortunes[math.floor(math.random() * fortunes.length)];
+      message.channel.sendMessage(fortunes[math.floor(math.random() * fortunes.length)]);
     } else {
       message.channel.sendMessage("Can't read that!");
     }
