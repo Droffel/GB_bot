@@ -4,6 +4,8 @@ const Token = "NTY0NTA3MjQyMTMzNzE3MDAy.XKujTg.4aNQD2hNa9E9vvC3606nlN3NIjo";
 
 const Prefix = "_"
 
+const YTDL = require("ytdl-core");
+
 var bot = new Discord.Client();
 
 var fortunes = [
@@ -13,13 +15,28 @@ var fortunes = [
   "Only time will tell!",
   "I Dunno, do you?",
   "Eat a Swedish Köttbulle and all answers will be clear :)",
-  "Nah I don't think so you bitch, BTW Noel is a fliping beast!",
+  "Nah I don't think so you bitch, BTW Noel is a flipping beast!",
   "Only Noel knows...",
   "Only Droffel knows...",
   "Only Emil knows...",
   "Only Spence knows...",
-  "I won't answer dat >:("
+  "I won't answer dat :angry: !"
 ];
+
+function play(connection, message) {
+  var server = servers[message.guild.id];
+  server.dispatcher = connection.playstream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+  server.queue.shift();
+
+  server.dispatcher.on("end", function() {
+    if (server.queue[0]) play(connection, message);
+    else connection.disconnect();
+  });
+
+}
+
+var servers = ();
 
 bot.on("ready", function() {
   console.log("ready");
@@ -50,6 +67,43 @@ bot.on("message", function(message) {
     } else {
       message.channel.sendMessage("Can't read that!");
     }
+    break;
+    case "play":
+    if (!args[1]) {
+      send.channel.message("please provide a link!")
+    }
+
+    if (!message.member.voicechannel) {
+      send.channel.message("you must be in a voicechannel!")
+    }
+
+    if (!servers[message.guild.id]) servers[message.guild.id] = {
+      queue: []
+    };
+
+    var server = servers[message.guild.id];
+
+    server.queue.push(args[1]);
+    break;
+
+
+
+    var server = servers[message.guild.id];
+
+    if (!message.guild.voiceConnection) message.member.voiceChannel.join(). then(function(connection) {
+      playconnection, message);
+    });
+
+    break;
+
+    case "skip":
+    var server = servers(message.guild.id);
+    if (server.dispatcher) server.dispatcher.end();
+    break;
+
+    case "stop":
+    var server = servers(message.guild.id);
+    if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     break;
 
     default:
