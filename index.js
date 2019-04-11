@@ -72,11 +72,11 @@ bot.on("message", function(message) {
     break;
     case "play":
     if (!args[1]) {
-      message.channel.sendMessage("Please provide a link");
+      message.channel.send("Please provide a link");
       return;
     }
     if (!message.member.voiceChannel) {
-      message.channel.sendMessage("You must be in a voicechannel")
+      message.channel.send("You must be in a voicechannel")
       return;
 }
       if(!servers[message.guild.id]) servers[message.guild.id] = {
