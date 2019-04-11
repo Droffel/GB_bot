@@ -4,9 +4,22 @@ const YTDL = require("ytdl-core");
 const Token = "NTY0NTA3MjQyMTMzNzE3MDAy.XKujTg.4aNQD2hNa9E9vvC3606nlN3NIjo";
 const Prefix = "_"
 
+function play(connection, message) {
+  var server = servers[message.guild.id];
+
+  server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+  server.queue.shift();
+
+  server.dispatcher.on("end", function()) {
+    if (server.queue[0]) play(connection, message);
+    else connection.disconnect();
+  });
+}
 
 
-var bot = new Discord.Client();
+
+
 
 var fortunes = [
   "Yes",
@@ -22,6 +35,10 @@ var fortunes = [
   "Only Spence knows...",
   "I won't answer dat :angry: !"
 ];
+
+var bot = new Discord.Client();
+
+var servers = {};
 
 bot.on("ready", function() {
   console.log("ready");
@@ -41,7 +58,7 @@ bot.on("message", function(message) {
     message.channel.sendMessage("Pong!");
     break;
     case "commands":
-    message.channel.sendMessage("i can use the commands: _ping, _play, _MyCreator, _8ball");
+    message.channel.sendMessage("i can use the commands: _ping, _MyCreator, _8ball");
     break;
     case "mycreator":
     message.channel.sendMessage("i was created by the one and only Droffel!");
@@ -53,12 +70,39 @@ bot.on("message", function(message) {
       message.channel.sendMessage("Can't read that!");
     }
     break;
+    case "play":
+    if (!args[1]) {
+      message.channel.sendMessage("Please provide a link");
+      return;
+    }
+    if (!message.member.voiceChannel) {
+      message.channel.sendMessage("You must be in a voicechannel")
+      return;
 
+      if(!servers[message.guild.id]) servers[message.guild.id] = {
+        queue: []
+      };
 
+      var server = servers[message.guild.id];
+
+      server.queue.push(args[1]);
+
+      if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+        play(connection, message);
+      });
+      break;
+    case "skip":
+    var server = servers[message.guild.id];
+
+    if (server.dispatcher) server.dispatcher.end();
+    break;
+  case "stop":
+  var server = servers[message.guild.id];
+
+  if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     default:
     message.channel.sendMessage("Sorry pal, that ain't a command!");
   }
 });
 
 bot.login(process.env.Token);
-
